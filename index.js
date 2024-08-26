@@ -11,6 +11,7 @@ const nodemailer = require('nodemailer')
 require('dotenv').config();
 
 const port = 3001
+const secretKey = process.env.SECRET_KEY;
 
 // Middle Ware
 app.use(bodyParser.json())
@@ -27,7 +28,6 @@ app.use(session({
    saveUninitialized: false,
 }))
 
-const secretKey = process.env.SECRET_KEY;
 const user = process.env.DB_USER
 const host = process.env.DB_HOST
 const datab = process.env.DB_DATABASE
