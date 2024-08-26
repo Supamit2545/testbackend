@@ -24,7 +24,7 @@ app.use(cookieParser())
 app.use(session({
    secret: 'secret',
    resave: true,
-   saveUninitialized: true,
+   saveUninitialized: false,
 }))
 
 const secret = 'mysecret'
@@ -122,7 +122,7 @@ app.post('/login', async (req, res) => {
         res.cookie('token',token,{
             maxAge: 3600 * 1000,
             sameSite:'none',
-            secure: false,
+            secure: true,
             httpOnly: false,
         })
 
