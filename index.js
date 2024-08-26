@@ -17,7 +17,7 @@ const port = 3001
 // Middle Ware
 app.use(bodyParser.json())
 app.use(cors({
-    origin: ['https://myfamshop-d6e1348c9f1e.herokuapp.com'],
+    origin: ['https://myfamshops.vercel.app'],
     methods:["POST","GET",],
     credentials: true
 }))
