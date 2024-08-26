@@ -11,7 +11,6 @@ const nodemailer = require('nodemailer')
 require('dotenv').config();
 
 const port = 3001
-const secretKey = process.env.SECRET_KEY;
 
 // Middle Ware
 app.use(bodyParser.json())
@@ -23,11 +22,12 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 app.use(session({
-   secret: `${secretKey}`,
-   resave: false,
-   saveUninitialized: false,
+   secret: 'secret',
+   resave: true,
+   saveUninitialized: true,
 }))
 
+const secret = 'mysecret'
 const user = process.env.DB_USER
 const host = process.env.DB_HOST
 const datab = process.env.DB_DATABASE
@@ -117,12 +117,12 @@ app.post('/login', async (req, res) => {
             return false
         }
 
-        const token = jwt.sign({username}, secretKey ,{expiresIn:'1h'})
+        const token = jwt.sign({username}, secret ,{expiresIn:'1h'})
 
         res.cookie('token',token,{
             maxAge: 3600 * 1000,
             sameSite:'none',
-            secure: true,
+            secure: false,
             httpOnly: false,
         })
 
@@ -139,7 +139,7 @@ app.post('/login', async (req, res) => {
 });
 
 app.get('/logout', async(req, res) => {
-    res.clearCookie('token',{ path: '/', domain: 'https://myfamshops.vercel.app' }); // ปรับ path และ domain ตามที่คุณใช้
+    res.clearCookie('token'); // ปรับ path และ domain ตามที่คุณใช้
     req.session = null;
     req.cookies.token = null;
     res.status(200).json({ message: 'Logged out and cookies cleared' });
