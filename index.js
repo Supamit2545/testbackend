@@ -17,7 +17,7 @@ const port = 3001
 // Middle Ware
 app.use(bodyParser.json())
 app.use(cors({
-    origin: ['https://myfamshop-d6e1348c9f1e.herokuapp.com/'],
+    origin: ['https://myfamshop-d6e1348c9f1e.herokuapp.com'],
     methods:["POST","GET",],
     credentials: true
 }))
@@ -52,7 +52,7 @@ connection.connect()
 .catch(err => console.error('Connection error', err.stack))
 
 app.get('/', (req , res) => {
-   
+   res.send('From Server Side')
 });
 app.get('/user', async (req , res) => {
    try{
