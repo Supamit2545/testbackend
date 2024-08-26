@@ -206,9 +206,4 @@ app.get('/getRating',(req,res)=>{
         }
     })
 })
-// Send Email
-app.listen(port, () => {
-    console.log(`Server running at PORT:${port}`);
-});
-
 // 
