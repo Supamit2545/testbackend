@@ -25,8 +25,8 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(session({
    secret: 'secret',
-   resave: true,
-   saveUninitialized: true,
+   resave: false,
+   saveUninitialized: false,
 }))
 
 const secret = 'mysecret'
@@ -206,4 +206,9 @@ app.get('/getRating',(req,res)=>{
         }
     })
 })
+// Send Email
+app.listen(port, () => {
+    console.log(`Server running at PORT:${port}`);
+});
+
 // 
