@@ -23,7 +23,7 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 app.use(session({
-   secret: secretKey,
+   secret: `${secretKey}`,
    resave: false,
    saveUninitialized: false,
 }))
@@ -117,13 +117,13 @@ app.post('/login', async (req, res) => {
             return false
         }
 
-        const token = jwt.sign({username}, secret ,{expiresIn:'1h'})
+        const token = jwt.sign({username}, secretKey ,{expiresIn:'1h'})
 
         res.cookie('token',token,{
             maxAge: 3600 * 1000,
             sameSite:'none',
             secure: true,
-            httpOnly: true,
+            httpOnly: false,
         })
 
         res.json({
