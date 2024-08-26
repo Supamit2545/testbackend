@@ -17,7 +17,7 @@ const port = 3001
 // Middle Ware
 app.use(bodyParser.json())
 app.use(cors({
-    origin: ['http://localhost:3000'],
+    origin: ['https://myfamshop-d6e1348c9f1e.herokuapp.com/'],
     methods:["POST","GET",],
     credentials: true
 }))
